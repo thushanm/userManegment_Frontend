@@ -12,8 +12,7 @@ export const Inputs = () => {
   const [gender, setGender] = useState("");
 
   const handleClick = async (e) => {
-    e.preventDefault();
-
+  
     const jsonData = {
       firstName: fName,
       lastName: lName,
