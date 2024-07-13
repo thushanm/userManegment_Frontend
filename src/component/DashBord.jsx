@@ -1,15 +1,18 @@
 import { Container, TextField } from "@mui/material";
 import { Inputs } from "./Inputs";
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import ReactVirtualizedTable from "./ReactVirtualizedTable";
 
 
 export const DashBord = () => {
   return (
     <Container maxWidth={false} style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <nav style={{ display: 'flex', alignItems: 'center', padding: '1rem', justifyContent: 'center' }}>
-        <img src="/src/assets/images (2).png" alt="LOGO" style={{ width: '10%' }} />
+      <ContactMailIcon sx={{ color: 'black', fontSize: 30 }} />
         <h1>User Management System</h1>
       </nav>
 <Inputs/>
+<ReactVirtualizedTable/>
     </Container>
   );
 };
