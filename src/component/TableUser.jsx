@@ -6,8 +6,12 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
+
+
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -28,21 +32,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-const createData = (_id, fristName, lastName, dateOfBirth, address, gender) => {
-    return { _id, fristName, lastName, dateOfBirth, address, gender };
-};
-
 export function TableUser() {
     const [tableData, setTableData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
+ 
 
     const getData = async () => {
         try {
-            const response = await axios.get('http://localhost:2020/api/v1/user/getAll');
-            const data = response.data;
+            const response = await axios.get('http://localhost:2020/api/v1/user/getAll', {
+               
+            });
+            const data = response.data.data;
 
-       
-            if (data && data.data && data.data.userAll && Array.isArray(data.data.userAll)) {
-                setTableData(data.data.userAll);
+            if (data && data.userAll && Array.isArray(data.userAll)) {
+                setTableData(data.userAll);
             } else {
                 console.error('Data format is not correct', data);
                 setTableData([]);
@@ -51,7 +54,7 @@ export function TableUser() {
             console.log("data fetching success", data);
         } catch (error) {
             console.error('Error fetching data:', error);
-            setTableData([]); 
+            setTableData([]); // Set to empty array on error
         }
     };
 
@@ -61,11 +64,25 @@ export function TableUser() {
 
     return (
         <>
+ <form>
+
+ <TextField
+          fullWidth
+          id="standard-basic"
+          label="Search Users"
+          variant="outlined"
+          onChange={(e) => setSearchQuery(e.target.value)}
+          sx={{ fontWeight: "bold",fontSize:"20px" }}
+    
+       
+        />
+ </form>
+           
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Id</StyledTableCell>
+                           
                             <StyledTableCell align="right">First Name</StyledTableCell>
                             <StyledTableCell align="right">Last Name</StyledTableCell>
                             <StyledTableCell align="right">BirthDay</StyledTableCell>
@@ -76,11 +93,11 @@ export function TableUser() {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {Array.isArray(tableData) && tableData.map((row) => (
+                        {Array.isArray(tableData) && tableData.filter((row)=>{
+                            return searchQuery.toLowerCase()===''? row : row.firstName.toLowerCase().includes(searchQuery);
+                        }).map((row) => (
                             <StyledTableRow key={row._id}>
-                                <StyledTableCell component="th" scope="row">
-                                    {row._id}
-                                </StyledTableCell>
+                               
                                 <StyledTableCell align="right">{row.firstName}</StyledTableCell>
                                 <StyledTableCell align="right">{row.lastName}</StyledTableCell>
                                 <StyledTableCell align="right">{row.dateOfBirth}</StyledTableCell>
