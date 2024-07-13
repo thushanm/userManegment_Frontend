@@ -7,7 +7,7 @@ export const SerachInput=()=> {
   return (
     <Stack  >
      
-      <Autocomplete sx={{ width: 200,paddingLeft:'50px' }}
+      <Autocomplete sx={{ width: 400,paddingLeft:'50px' }}
         freeSolo
         id="free-solo-2-demo"
         disableClearable
@@ -28,7 +28,7 @@ export const SerachInput=()=> {
   );
 }
 
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
+
 const top100Films = [
  
 ];

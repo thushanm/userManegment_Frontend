@@ -33,6 +33,7 @@ export const Inputs = () => {
     } catch (err) {
       console.error("Save Error:", err); // Log specific error details for debugging
     }
+  
   };
 
   return (
@@ -100,7 +101,7 @@ export const Inputs = () => {
           id={"btnId"}
           type={"submit"}
         >
-          Save Item
+          Save User
         </Button>
       </form>
     </Container>

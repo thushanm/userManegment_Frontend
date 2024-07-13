@@ -1,7 +1,7 @@
 import { Container, TextField } from "@mui/material";
 import { Inputs } from "./Inputs";
 import ContactMailIcon from '@mui/icons-material/ContactMail';
-import ReactVirtualizedTable from "./ReactVirtualizedTable";
+import { TableUser } from "./TableUser";
 import { SerachInput } from "./SerachInput";
 
 
@@ -15,7 +15,7 @@ export const DashBord = () => {
      <SerachInput/>
       </nav>
 <Inputs/>
-<ReactVirtualizedTable/>
+<TableUser/>
     </Container>
   );
 };
