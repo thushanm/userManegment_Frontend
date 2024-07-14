@@ -38,7 +38,7 @@ export const Inputs = (props) => {
       console.log("Haiii");
       try {
         console.log("Haiii");
-        const upResponse = await axios.put(`http://localhost:2020/api/v1/user/${id}`, jsonData, {
+        const upResponse = await axios.put(`http://localhost:2020/api/v1/user`, jsonData, {
           headers: {
             "Content-Type": "application/json",
           },
